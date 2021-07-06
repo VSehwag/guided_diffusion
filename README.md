@@ -34,3 +34,6 @@ mpiexec -n N python scripts/classifier_sample.py \
 ```
 
 To sample for 250 timesteps without DDIM, replace `--timestep_respacing ddim25` to `--timestep_respacing 250`, and replace `--use_ddim True` with `--use_ddim False`.
+
+
+Checkpoint of a classifier trained with 64x64 size images: https://drive.google.com/drive/folders/1hTT1vrhU5vQ2t021IlQR7UjAMQCGnOFH?usp=sharing. 
