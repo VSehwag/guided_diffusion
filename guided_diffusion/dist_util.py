@@ -36,9 +36,12 @@ def setup_dist():
     os.environ["MASTER_ADDR"] = comm.bcast(hostname, root=0)
     os.environ["RANK"] = str(comm.rank)
     os.environ["WORLD_SIZE"] = str(comm.size)
-
+    os.environ["NCCL_DEBUG"] = "INFO" # more information for debugging
+    os.environ["NCCL_P2P_DISABLE"] = "1" # disable p2p communication
+    
     port = comm.bcast(_find_free_port(), root=0)
     os.environ["MASTER_PORT"] = str(port)
+    print(MPI.COMM_WORLD.Get_rank(), os.environ["CUDA_VISIBLE_DEVICES"], os.environ["MASTER_ADDR"], os.environ["RANK"], os.environ["WORLD_SIZE"], port, backend)
     dist.init_process_group(backend=backend, init_method="env://")
 
 
